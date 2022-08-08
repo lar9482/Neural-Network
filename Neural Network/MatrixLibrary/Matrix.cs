@@ -90,7 +90,7 @@ namespace Neural_Network.MatrixLibrary
         
         public Matrix matrixAdd(Matrix secondMatrix)
         {
-            if (rows != secondMatrix.rows || cols != secondMatrix.cols)
+            if (!sameSize(secondMatrix))
             {
                 throw new Exception("Matrices must be of the same rows and columns.");
             }
@@ -135,7 +135,7 @@ namespace Neural_Network.MatrixLibrary
         public Matrix elementWiseMultiply(Matrix secondMatrix)
         {
 
-            if (rows != secondMatrix.rows || cols != secondMatrix.cols)
+            if (!sameSize(secondMatrix))
             {
                 throw new Exception("Matrices must be of the same rows and columns.");
             }
@@ -150,6 +150,32 @@ namespace Neural_Network.MatrixLibrary
             }
 
             return new Matrix(newData);
+        }
+
+        public bool sameSize(Matrix matrix)
+        {
+            return (rows == matrix.rows && cols == matrix.cols);
+        }
+
+        public bool Equals(Matrix matrix)
+        {
+            if (!sameSize(matrix))
+            {
+                return false;
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    if (data[i, j] != matrix.data[i, j])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }
