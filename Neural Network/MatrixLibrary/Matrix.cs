@@ -33,7 +33,7 @@ namespace Neural_Network.MatrixLibrary
             
         }
 
-        private double[,] generateRandomArray(int rows, int cols)
+        private double[,] generateRandomArray(int rows, int cols, int lowerBound = -1, int upperBound = 1)
         {
             double[,] data = new double[rows, cols];
             Random rand = new Random();
@@ -41,7 +41,7 @@ namespace Neural_Network.MatrixLibrary
             {
                 for(int cur_Col = 0; cur_Col < cols; cur_Col++)
                 {
-                    data[cur_Row,cur_Col] = rand.NextDouble();
+                    data[cur_Row,cur_Col] = rand.NextDouble() * (upperBound - lowerBound) + lowerBound;
                 }
             }
             return data;
@@ -49,28 +49,32 @@ namespace Neural_Network.MatrixLibrary
 
         public Matrix scalarAdd(double scalar)
         {
+            double[,] newData = new double[rows, cols];
+
             for (int cur_Row = 0; cur_Row < rows; cur_Row++)
             {
                 for (int cur_Col = 0; cur_Col < cols; cur_Col++)
                 {
-                    data[cur_Row, cur_Col] += scalar; 
+                    newData[cur_Row, cur_Col] = data[cur_Row, cur_Col] + scalar; 
                 }
             }
 
-            return new Matrix(data);
+            return new Matrix(newData);
         }
 
         public Matrix scalarMultiply(double scalar)
         {
+            double[,] newData = new double[rows, cols];
+
             for (int cur_Row = 0; cur_Row < rows; cur_Row++)
             {
                 for (int cur_Col = 0; cur_Col < cols; cur_Col++)
                 {
-                    data[cur_Row, cur_Col] *= scalar;
+                    newData[cur_Row, cur_Col] = data[cur_Row, cur_Col] * scalar;
                 }
             }
 
-            return new Matrix(data);
+            return new Matrix(newData);
         }
 
         public Matrix transpose()
@@ -121,7 +125,7 @@ namespace Neural_Network.MatrixLibrary
                     double sum = 0;
                     for (int k = 0; k < secondMatrix.rows; k++)
                     {
-                        sum += data[i, k] + secondMatrix.data[k, j];
+                        sum += (data[i, k] * secondMatrix.data[k, j]);
                     }
 
                     newData[i, j] = sum;

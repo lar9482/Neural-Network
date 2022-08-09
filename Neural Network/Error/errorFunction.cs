@@ -10,6 +10,7 @@ namespace Neural_Network.Error
 
         public abstract double error(double expected, double actual);
         public abstract double errorDerivative(double expected, double actual);
+        
 
         public Matrix errorMatrix(Matrix expectedMatrix, Matrix actualMatrix)
         {
