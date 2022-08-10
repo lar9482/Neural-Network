@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Neural_Network.MatrixLibrary;
 using Neural_Network.Activation;
 
-namespace Neural_Network.Layers.FeedForward.DenseLayer
+namespace Neural_Network.Layers.FeedForward.Dense
 {
     public class DenseLayer : BaseLayer
     {

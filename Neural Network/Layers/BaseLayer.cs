@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Neural_Network.MatrixLibrary;
+using Neural_Network.LearningAlgorithmBase;
 
 namespace Neural_Network.Layers
 {
@@ -17,6 +18,8 @@ namespace Neural_Network.Layers
 
         public int LAYER_HEIGHT { get; set; }
         public int LAYER_WIDTH { get; set; }
+
+        public LearningAlgorithm algorithm { get; set; }
 
     }
 }

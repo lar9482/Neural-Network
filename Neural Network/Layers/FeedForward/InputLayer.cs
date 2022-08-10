@@ -5,26 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Neural_Network.MatrixLibrary;
 
-namespace Neural_Network.Layers.FeedForward.InputLayer
+namespace Neural_Network.Layers.FeedForward.Input
 {
     public class InputLayer : BaseLayer
     {
-        public InputLayer(int featureSize, int samplingSize)
-        {
-            this.LAYER_HEIGHT = featureSize;
-            this.LAYER_WIDTH = samplingSize;
-        }
 
-        public void inputDataset(Matrix dataset)
+        public InputLayer(Matrix inputDataSet)
         {
-            if (dataset.rows != LAYER_HEIGHT || dataset.cols != LAYER_WIDTH)
-            {
-                throw new Exception("Feedforward.InputLayer: Make sure the dataset matches the sampling size and feature size");
-            }
-            else
-            {
-                this.contents = dataset;
-            }
+            this.contents = inputDataSet;
+            this.LAYER_HEIGHT = inputDataSet.rows;
+            this.LAYER_WIDTH = inputDataSet.cols;
         }
         
     }

@@ -5,12 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Neural_Network.MatrixLibrary;
+using Neural_Network.Layers;
 
-namespace Neural_Network.LearningAlgorithm
+namespace Neural_Network.LearningAlgorithmBase
 {
     public abstract class LearningAlgorithm
     {
-        public Matrix changeWeights { get; set; }
-        public Matrix changeBias { get; set; }
+        public BaseLayer currentLayer { get; set; }
+        
+        public LearningAlgorithm(BaseLayer currentLayer)
+        {
+            this.currentLayer = currentLayer;
+        }
     }
 }
