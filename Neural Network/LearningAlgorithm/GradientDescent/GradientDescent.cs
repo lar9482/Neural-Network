@@ -10,38 +10,37 @@ using Neural_Network.Error;
 
 using Neural_Network.Layers;
 using Neural_Network.Layers.FeedForward.Dense;
+using Neural_Network.Layers.FeedForward.Output;
 
 namespace Neural_Network.LearningAlgorithmBase.GradientDescent
 {
     public class GradientDescent : LearningAlgorithm
     {
-        public Matrix HamardProduct { get; set; }
-        public GradientDescent(BaseLayer currentLayer) : base(currentLayer)
-        {
-            //this.HamardProduct = calculateHamardProduct(currentLayer);
-            this.currentLayer = currentLayer;
-        }
 
-        /*public Matrix calculateChangeWeights(double learningRate)
+        public GradientDescent()
         {
 
         }
 
-        public Matrix calculateChangeBias(double learningRate)
+
+        public override void backPropagateDense(DenseLayer layer)
         {
 
         }
 
-        private Matrix calculateHamardProduct(BaseLayer currentLayer)
+        public override void backPropagateOutput(OutputLayer layer)
         {
-            if (currentLayer.Equals(typeof(DenseLayer)))
-            {
 
-            }
-            else
-            {
+        }
 
-            }
-        }*/
+        public override Matrix calculateChangeWeights()
+        {
+            return new Matrix(0, 0);
+        }
+
+        public override Matrix calculateChangeBias()
+        {
+            return new Matrix(0, 0);
+        }
     }
 }

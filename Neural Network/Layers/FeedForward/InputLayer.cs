@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Neural_Network.MatrixLibrary;
+using Neural_Network.Layers.FeedForward.Dense;
 
 namespace Neural_Network.Layers.FeedForward.Input
 {

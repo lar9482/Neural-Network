@@ -8,6 +8,7 @@ using Neural_Network.MatrixLibrary;
 using Neural_Network.Layers.FeedForward.Dense;
 using Neural_Network.Error;
 using Neural_Network.Activation;
+using Neural_Network.LearningAlgorithmBase;
 
 namespace Neural_Network.Layers.FeedForward.Output
 {
@@ -17,11 +18,18 @@ namespace Neural_Network.Layers.FeedForward.Output
         
         public errorFunction errorFunction { get; set; }
 
-        public OutputLayer(Matrix truthMatrix, DenseLayer previousLayer, activationFunction activation, errorFunction error) 
-             : base(previousLayer, truthMatrix.rows, activation)
+
+        public OutputLayer(Matrix truthMatrix, DenseLayer previousLayer, activationFunction activation,
+                           errorFunction error, LearningAlgorithm algorithm)
+            : base(truthMatrix.rows, previousLayer, activation, algorithm)
         {
             this.errorFunction = error;
             this.truthMatrix = truthMatrix;
+        }
+
+        public override void backPropagate()
+        {
+            algorithm.backPropagateOutput(this);
         }
 
         
