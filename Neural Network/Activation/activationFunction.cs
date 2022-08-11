@@ -25,7 +25,7 @@ namespace Neural_Network.Activation
             return new Matrix(activatedData);
         }
 
-        public virtual Matrix activateDerivative(Matrix input)
+        public virtual Matrix activateDerivativeMatrix(Matrix input)
         {
             double[,] activatedData = new double[input.rows, input.cols];
 

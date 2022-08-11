@@ -48,6 +48,12 @@ namespace Neural_Network
             hiddenLayer3.feedForward();
             outputLayer.feedForward();
 
+            outputLayer.backPropagate();
+            hiddenLayer3.backPropagate();
+            hiddenLayer2.backPropagate();
+            hiddenLayer1.backPropagate();
+
+
             Matrix actualVector = outputLayer.contents;
 
         }

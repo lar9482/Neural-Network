@@ -25,12 +25,27 @@ namespace Neural_Network.LearningAlgorithmBase.GradientDescent
 
         public override void backPropagateDense(DenseLayer layer)
         {
+            activationFunction activate = layer.activation;
 
+            Matrix nextLocalChange = layer.nextLayer.algorithm.localChange;
+            Matrix nextWeights = layer.nextLayer.weights.transpose();
+            Matrix next_WeightsTimesLocalChange = nextWeights.matrixMultiply(nextLocalChange);
+
+            Matrix activationDerivativeResults = activate.activateDerivativeMatrix(layer.contents);
+
+
+            localChange = next_WeightsTimesLocalChange.elementWiseMultiply(activationDerivativeResults);
         }
 
         public override void backPropagateOutput(OutputLayer layer)
         {
+            errorFunction error = layer.errorFunction;
+            activationFunction activate = layer.activation;
 
+            Matrix errorResultDerivative = error.errorDerivativeMatrix(layer.truthMatrix, layer.contents);
+            Matrix activationDerivativeResult = activate.activateDerivativeMatrix(layer.contents);
+
+            localChange = errorResultDerivative.elementWiseMultiply(activationDerivativeResult);
         }
 
         public override Matrix calculateChangeWeights()

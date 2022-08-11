@@ -25,8 +25,8 @@ namespace Neural_Network.Layers.FeedForward.Dense
         public Matrix bias { get; set; }
         public Matrix nonActivatatedContents { get; set; }
 
-        protected activationFunction activation { get; set; }
-        protected LearningAlgorithm algorithm { get; set; }
+        public activationFunction activation { get; set; }
+        public LearningAlgorithm algorithm { get; set; }
 
         protected double learningRate { get; set; }
 
@@ -53,8 +53,8 @@ namespace Neural_Network.Layers.FeedForward.Dense
             this.LAYER_HEIGHT = layerSize;
             this.LAYER_WIDTH = previousLayer.LAYER_WIDTH;
 
-            this.weights = new Matrix(LAYER_HEIGHT, previousLayer.LAYER_HEIGHT);
-            this.bias = new Matrix(LAYER_HEIGHT, previousLayer.LAYER_WIDTH);
+            this.weights = new Matrix(layerSize, previousLayer.LAYER_HEIGHT);
+            this.bias = new Matrix(layerSize, previousLayer.LAYER_WIDTH);
 
             this.activation = activation;
             this.algorithm = algorithm;
@@ -66,7 +66,6 @@ namespace Neural_Network.Layers.FeedForward.Dense
             nonActivatatedContents = (weights.matrixMultiply(previousLayer.contents))
                                      .matrixAdd(bias);
             
-
             contents = activation.activateMatrix(nonActivatatedContents);
         }
 
