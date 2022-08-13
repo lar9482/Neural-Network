@@ -18,7 +18,5 @@ namespace Neural_Network.LearningAlgorithmBase
 
         public abstract void backPropagateDense(DenseLayer layer);
         public abstract void backPropagateOutput(OutputLayer layer);
-        public abstract Matrix calculateChangeWeights();
-        public abstract Matrix calculateChangeBias();
     }
 }

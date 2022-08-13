@@ -19,9 +19,9 @@ namespace Neural_Network.Layers.FeedForward.Output
         public errorFunction errorFunction { get; set; }
 
 
-        public OutputLayer(Matrix truthMatrix, DenseLayer previousLayer, activationFunction activation,
+        public OutputLayer(Matrix truthMatrix, double learningRate, DenseLayer previousLayer, activationFunction activation,
                            errorFunction error, LearningAlgorithm algorithm)
-            : base(truthMatrix.rows, previousLayer, activation, algorithm)
+            : base(truthMatrix.rows, learningRate, previousLayer, activation, algorithm)
         {
             this.errorFunction = error;
             this.truthMatrix = truthMatrix;

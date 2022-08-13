@@ -31,8 +31,11 @@ namespace Neural_Network.Layers.FeedForward.Dense
         protected double learningRate { get; set; }
 
 
-        public DenseLayer(int layerSize, InputLayer previousLayer, activationFunction activation, LearningAlgorithm algorithm)
+        public DenseLayer(int layerSize, double learningRate, InputLayer previousLayer, activationFunction activation, LearningAlgorithm algorithm)
         {
+
+            this.learningRate = learningRate;
+
             this.previousLayer = previousLayer;
 
             this.LAYER_HEIGHT = layerSize;
@@ -45,8 +48,10 @@ namespace Neural_Network.Layers.FeedForward.Dense
             this.algorithm = algorithm;
         }
 
-        public DenseLayer(int layerSize, DenseLayer previousLayer, activationFunction activation, LearningAlgorithm algorithm)
+        public DenseLayer(int layerSize, double learningRate, DenseLayer previousLayer, activationFunction activation, LearningAlgorithm algorithm)
         {
+            this.learningRate = learningRate;
+
             this.previousLayer = previousLayer;
             previousLayer.nextLayer = this;
 
@@ -76,12 +81,22 @@ namespace Neural_Network.Layers.FeedForward.Dense
 
         public void updateWeights()
         {
+            Matrix localChange = algorithm.localChange;
+            Matrix previousContent = previousLayer.contents.transpose();
 
+            Matrix weightChange = localChange.matrixMultiply(previousContent);
+            weightChange = weightChange.scalarMultiply(-learningRate);
+
+            weights = weights.matrixAdd(weightChange);
         }
 
         public void updateBias()
         {
+            Matrix localChange = algorithm.localChange;
 
+            Matrix biasChange = localChange.scalarMultiply(-learningRate);
+
+            bias = bias.matrixAdd(biasChange);
         }
     }
 }

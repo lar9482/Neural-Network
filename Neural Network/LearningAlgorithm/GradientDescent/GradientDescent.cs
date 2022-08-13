@@ -31,7 +31,7 @@ namespace Neural_Network.LearningAlgorithmBase.GradientDescent
             Matrix nextWeights = layer.nextLayer.weights.transpose();
             Matrix next_WeightsTimesLocalChange = nextWeights.matrixMultiply(nextLocalChange);
 
-            Matrix activationDerivativeResults = activate.activateDerivativeMatrix(layer.contents);
+            Matrix activationDerivativeResults = activate.activateDerivativeMatrix(layer.nonActivatatedContents);
 
 
             localChange = next_WeightsTimesLocalChange.elementWiseMultiply(activationDerivativeResults);
@@ -43,19 +43,9 @@ namespace Neural_Network.LearningAlgorithmBase.GradientDescent
             activationFunction activate = layer.activation;
 
             Matrix errorResultDerivative = error.errorDerivativeMatrix(layer.truthMatrix, layer.contents);
-            Matrix activationDerivativeResult = activate.activateDerivativeMatrix(layer.contents);
+            Matrix activationDerivativeResult = activate.activateDerivativeMatrix(layer.nonActivatatedContents);
 
             localChange = errorResultDerivative.elementWiseMultiply(activationDerivativeResult);
-        }
-
-        public override Matrix calculateChangeWeights()
-        {
-            return new Matrix(0, 0);
-        }
-
-        public override Matrix calculateChangeBias()
-        {
-            return new Matrix(0, 0);
         }
     }
 }
