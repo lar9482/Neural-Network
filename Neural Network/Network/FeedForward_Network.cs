@@ -16,7 +16,7 @@ using Neural_Network.LearningAlgorithmBase;
 using Neural_Network.MatrixLibrary;
 using Neural_Network.MatrixLibrary.Utilities;
 
-namespace Neural_Network.Network
+namespace Neural_Network.Network.FeedForward
 {
     public class FeedForward_Network
     {
@@ -42,7 +42,7 @@ namespace Neural_Network.Network
         {
             if (hiddenLayers == null)
             {
-                hiddenLayers = new List<DenseLayer>();
+                hiddenLayers = new List<DenseLayer>(5);
                 hiddenLayers.Add(new DenseLayer(layerSize, learningRate, inputLayer, activation, algorithm));
             }
             else
@@ -53,7 +53,15 @@ namespace Neural_Network.Network
 
         public void compile(double learningRate, activationFunction activation, errorFunction error, LearningAlgorithm algorithm)
         {
-            this.outputLayer = new OutputLayer(outputFeatureSize, learningRate, hiddenLayers.Last(), activation, error, algorithm);
+            if (hiddenLayers == null)
+            {
+                this.outputLayer = new OutputLayer(outputFeatureSize, learningRate, inputLayer, activation, error, algorithm);
+            }
+            else
+            {
+                this.outputLayer = new OutputLayer(outputFeatureSize, learningRate, hiddenLayers.Last(), activation, error, algorithm);
+            }
+            
         }
 
         public void train(Matrix input, Matrix output, int epochs)
@@ -103,24 +111,31 @@ namespace Neural_Network.Network
         public Matrix predict(Matrix input)
         {
             predictParameterCheck(input);
+            inputLayer.contents = input;
 
-            return input;
+            for (int i = 0; i < hiddenLayers.Count; i++)
+            {
+                hiddenLayers[i].feedForward();
+            }
+            outputLayer.feedForward();
+
+            return outputLayer.contents;
         }
 
         private void trainParameterCheck(Matrix input, Matrix output)
         {
             if (!inputCheck(input))
             {
-                throw new Exception("Make sure the input dataset's # of rows and columns is equal to the network's input feature size and sampling size");
+                throw new Exception("Make sure the number of rows and columns in the input matrix are equal to the network's input feature size and sampling size");
             }
             if (!outputCheck(output))
             {
-                throw new Exception("Make sure the output dataset's # of rows and columns is equal to the network's output feature size and sampling size");
+                throw new Exception("Make sure the number of rows and columns in the output matrix are equal to the network's output feature size and sampling size");
                 
             }
             if (input.cols != output.cols)
             {
-                throw new Exception("Make sure there are the same number of input and output samples");
+                throw new Exception("Make sure the number of columns in the input and output matrices are equal");
             }
         }
 
@@ -128,7 +143,7 @@ namespace Neural_Network.Network
         {
             if (!inputCheck(input))
             {
-                throw new Exception("Make sure the input dataset's # of rows and columns is equal to the network's input feature size and sampling size");
+                throw new Exception("Make sure the number of rows and columns in the input matrix are equal to the network's input feature size and sampling size");
             }
         }
 

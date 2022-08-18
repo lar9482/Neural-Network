@@ -10,6 +10,8 @@ using Neural_Network.Error;
 using Neural_Network.Activation;
 using Neural_Network.LearningAlgorithmBase;
 
+using Neural_Network.Layers.FeedForward.Input;
+
 namespace Neural_Network.Layers.FeedForward.Output
 {
     public class OutputLayer : DenseLayer
@@ -28,6 +30,21 @@ namespace Neural_Network.Layers.FeedForward.Output
         }
 
         public OutputLayer(int outputFeatureSize, double learningRate, DenseLayer previousLayer, activationFunction activation,
+                           errorFunction error, LearningAlgorithm algorithm)
+            : base(outputFeatureSize, learningRate, previousLayer, activation, algorithm)
+        {
+            this.errorFunction = error;
+        }
+
+        public OutputLayer(Matrix truthMatrix, double learningRate, InputLayer previousLayer, activationFunction activation,
+                           errorFunction error, LearningAlgorithm algorithm)
+            : base(truthMatrix.rows, learningRate, previousLayer, activation, algorithm)
+        {
+            this.errorFunction = error;
+            this.truthMatrix = truthMatrix;
+        }
+
+        public OutputLayer(int outputFeatureSize, double learningRate, InputLayer previousLayer, activationFunction activation,
                            errorFunction error, LearningAlgorithm algorithm)
             : base(outputFeatureSize, learningRate, previousLayer, activation, algorithm)
         {
