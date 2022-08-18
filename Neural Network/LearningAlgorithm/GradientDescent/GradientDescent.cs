@@ -19,9 +19,7 @@ namespace Neural_Network.LearningAlgorithmBase.GradientDescent
 
         public GradientDescent()
         {
-
         }
-
 
         public override void backPropagateDense(DenseLayer layer)
         {

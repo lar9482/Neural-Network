@@ -17,6 +17,12 @@ namespace Neural_Network.Layers.FeedForward.Input
             this.LAYER_HEIGHT = inputDataSet.rows;
             this.LAYER_WIDTH = inputDataSet.cols;
         }
+
+        public InputLayer(int featureSize, int samplingSize)
+        {
+            this.LAYER_HEIGHT = featureSize;
+            this.LAYER_WIDTH = samplingSize;
+        }
         
     }
 }

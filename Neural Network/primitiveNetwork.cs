@@ -36,14 +36,12 @@ namespace Neural_Network
 
             InputLayer inputLayer = new InputLayer(inputVector);
 
-
             DenseLayer hiddenLayer1 = new DenseLayer(layerSize1, learningRate, inputLayer, a, new GradientDescent());
             DenseLayer hiddenLayer2 = new DenseLayer(layerSize2, learningRate, hiddenLayer1, a, new GradientDescent());
             DenseLayer hiddenLayer3 = new DenseLayer(layerSize3, learningRate, hiddenLayer2, a, new GradientDescent());
 
             Matrix truthVector = new Matrix(10, sampling);
             OutputLayer outputLayer = new OutputLayer(truthVector, learningRate, hiddenLayer3, a, e, new GradientDescent());
-
 
             hiddenLayer1.feedForward();
             hiddenLayer2.feedForward();

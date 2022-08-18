@@ -93,7 +93,6 @@ namespace Neural_Network.Layers.FeedForward.Dense
         public void updateBias()
         {
             Matrix localChange = algorithm.localChange;
-
             Matrix biasChange = localChange.scalarMultiply(-learningRate);
 
             bias = bias.matrixAdd(biasChange);

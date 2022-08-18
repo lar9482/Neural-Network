@@ -31,7 +31,6 @@ namespace Neural_Network.Layers.FeedForward.Output
         {
             algorithm.backPropagateOutput(this);
         }
-
         
     }
 }
