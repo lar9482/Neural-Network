@@ -75,7 +75,7 @@ namespace Neural_Network.Network
                     inputLayer.contents = batchedInput;
                     outputLayer.truthMatrix = batchedOutput;
 
-                    for (int j = 0; j < hiddenLayers.Count; i++)
+                    for (int j = 0; j < hiddenLayers.Count; j++)
                     {
                         hiddenLayers[j].feedForward();
                     }
