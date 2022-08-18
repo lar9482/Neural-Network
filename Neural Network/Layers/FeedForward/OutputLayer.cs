@@ -27,6 +27,13 @@ namespace Neural_Network.Layers.FeedForward.Output
             this.truthMatrix = truthMatrix;
         }
 
+        public OutputLayer(int outputFeatureSize, double learningRate, DenseLayer previousLayer, activationFunction activation,
+                           errorFunction error, LearningAlgorithm algorithm)
+            : base(outputFeatureSize, learningRate, previousLayer, activation, algorithm)
+        {
+            this.errorFunction = error;
+        }
+
         public override void backPropagate()
         {
             algorithm.backPropagateOutput(this);

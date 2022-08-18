@@ -181,5 +181,21 @@ namespace Neural_Network.MatrixLibrary
 
             return true;
         }
+
+        public void printMatrix()
+        {
+            Console.WriteLine();
+            for (int i = 0; i < rows; i++)
+            {
+                Console.Write("[");
+                for (int j = 0; j < cols; j++)
+                {
+                    Console.Write(Math.Round(data[i,j], 2)+ ", ");
+                }
+                Console.Write("]\n");
+            }
+
+            Console.WriteLine();
+        }
     }
 }

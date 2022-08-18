@@ -14,6 +14,8 @@ using Neural_Network.Layers.FeedForward.Output;
 
 using Neural_Network.LearningAlgorithmBase.GradientDescent;
 
+using Neural_Network.MatrixLibrary.Utilities;
+
 namespace Neural_Network
 {
     internal class primitiveNetwork
@@ -67,6 +69,9 @@ namespace Neural_Network
 
             //Matrix actualVector = outputLayer.contents;
 
+            /*Matrix inputSubset = Matrix_Utilities.getMatrixColumns(inputVector, new List<int> { 2, 4 });
+            inputVector.printMatrix();
+            inputSubset.printMatrix();*/
         }
     }
 }
