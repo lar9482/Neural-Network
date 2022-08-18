@@ -27,12 +27,12 @@ namespace Neural_Network.LearningAlgorithmBase.GradientDescent
 
             Matrix nextLocalChange = layer.nextLayer.algorithm.localChange;
             Matrix nextWeights = layer.nextLayer.weights.transpose();
-            Matrix next_WeightsTimesLocalChange = nextWeights.matrixMultiply(nextLocalChange);
+            Matrix nextWeights_Times_LocalChange = nextWeights.matrixMultiply(nextLocalChange);
 
             Matrix activationDerivativeResults = activate.activateDerivativeMatrix(layer.nonActivatatedContents);
 
 
-            localChange = next_WeightsTimesLocalChange.elementWiseMultiply(activationDerivativeResults);
+            localChange = nextWeights_Times_LocalChange.elementWiseMultiply(activationDerivativeResults);
         }
 
         public override void backPropagateOutput(OutputLayer layer)
