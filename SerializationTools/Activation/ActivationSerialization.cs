@@ -10,7 +10,7 @@ namespace SerializationTools.Activation
 {
     internal class ActivationSerialization
     {
-        public static string SerializeActivation(activationFunction activate)
+        internal static string SerializeActivation(activationFunction activate)
         {
             if (activate is sigmoid)
             {
@@ -24,7 +24,7 @@ namespace SerializationTools.Activation
             return "";
         }
 
-        public static activationFunction DeserializeActivation(string activate)
+        internal static activationFunction DeserializeActivation(string activate)
         {
             switch(activate)
             {

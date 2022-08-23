@@ -9,7 +9,7 @@ namespace SerializationTools.Error
 {
     internal class ErrorSerialization
     {
-        public static string SerializeError(errorFunction errorFunction)
+        internal static string SerializeError(errorFunction errorFunction)
         {
             if (errorFunction is crossEntropy)
             {
@@ -23,7 +23,7 @@ namespace SerializationTools.Error
             return "";
         }
 
-        public static errorFunction DeserializeError(string errorFunction)
+        internal static errorFunction DeserializeError(string errorFunction)
         {
             switch(errorFunction)
             {

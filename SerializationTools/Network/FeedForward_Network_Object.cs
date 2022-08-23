@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,10 @@ using Neural_Network.Layers.FeedForward.Output;
 
 using Neural_Network.Network.FeedForward;
 
-using Neural_Network.MatrixLibrary;
 
-namespace SerializationTools.Network
+using Newtonsoft.Json;
+
+namespace SerializationTools.Network.FeedForward
 {
     public class FeedForward_Network_Object
     {
@@ -84,6 +86,40 @@ namespace SerializationTools.Network
                 {
                     network.hiddenLayers[i].nextLayer = network.hiddenLayers[i + 1];
                 }
+            }
+
+            return network;
+        }
+
+        public static void saveObject(string fullPath, FeedForward_Network network)
+        {
+            FeedForward_Network_Object objNetwork = serializeObject(network);
+            string networkJson = JsonConvert.SerializeObject(objNetwork);
+            try
+            {
+                File.WriteAllText(fullPath, networkJson);
+            }
+            catch(IOException e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        
+        public static FeedForward_Network loadObject(string fullPath)
+        {
+            FeedForward_Network network = null;
+            try
+            {
+                string networkJson = File.ReadAllText(fullPath);
+                FeedForward_Network_Object objNetwork = (FeedForward_Network_Object)
+                                                         JsonConvert.DeserializeObject<FeedForward_Network_Object>(networkJson);
+
+                network = deserializeObject(objNetwork);
+            }
+            catch (IOException e)
+            {
+                throw new Exception(e.Message);
             }
 
             return network;

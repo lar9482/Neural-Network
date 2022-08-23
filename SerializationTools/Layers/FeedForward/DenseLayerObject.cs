@@ -23,7 +23,7 @@ namespace SerializationTools.Layers.FeedForward.Dense
 
         public double learningRate { get; set; }
 
-        
+
         public static DenseLayerObject serializeObject(DenseLayer layer)
         {
             DenseLayerObject objLayer = new DenseLayerObject();
