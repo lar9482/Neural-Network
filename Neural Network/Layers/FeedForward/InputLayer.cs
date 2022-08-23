@@ -23,6 +23,7 @@ namespace Neural_Network.Layers.FeedForward.Input
             this.LAYER_HEIGHT = featureSize;
             this.LAYER_WIDTH = samplingSize;
         }
-        
+
+        public InputLayer() { }
     }
 }

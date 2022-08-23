@@ -33,6 +33,7 @@ namespace Neural_Network.MatrixLibrary
             
         }
 
+        public Matrix() { }
         private double[,] generateRandomArray(int rows, int cols, int lowerBound = -1, int upperBound = 1)
         {
             double[,] data = new double[rows, cols];

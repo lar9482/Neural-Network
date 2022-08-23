@@ -7,6 +7,7 @@ namespace Neural_Network.Activation
 {
     public abstract class activationFunction
     {
+        public activationFunction() { }
         public abstract double activate(double input);
         public abstract double activateDerivative(double input);
 

@@ -30,7 +30,7 @@ namespace Neural_Network.Layers.FeedForward.Dense
 
         protected double learningRate { get; set; }
 
-
+        public DenseLayer() { }
         public DenseLayer(int layerSize, double learningRate, InputLayer previousLayer, activationFunction activation, LearningAlgorithm algorithm)
         {
 

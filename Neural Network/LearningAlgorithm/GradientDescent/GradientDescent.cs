@@ -40,10 +40,18 @@ namespace Neural_Network.LearningAlgorithmBase.GradientDescent
             errorFunction error = layer.errorFunction;
             activationFunction activate = layer.activation;
 
-            Matrix errorResultDerivative = error.errorDerivativeMatrix(layer.truthMatrix, layer.contents);
-            Matrix activationDerivativeResult = activate.activateDerivativeMatrix(layer.nonActivatatedContents);
+            if (error is crossEntropy && activate is softmax)
+            {
+                Matrix negativeTruth = layer.truthMatrix.scalarMultiply(-1);
+                localChange = layer.contents.matrixAdd(negativeTruth);
+            }
+            else
+            {
+                Matrix errorResultDerivative = error.errorDerivativeMatrix(layer.truthMatrix, layer.contents);
+                Matrix activationDerivativeResult = activate.activateDerivativeMatrix(layer.nonActivatatedContents);
 
-            localChange = errorResultDerivative.elementWiseMultiply(activationDerivativeResult);
+                localChange = errorResultDerivative.elementWiseMultiply(activationDerivativeResult);
+            }
         }
     }
 }

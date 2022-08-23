@@ -11,8 +11,6 @@ namespace Neural_Network.Layers
     public abstract class BaseLayer
     {
         public Matrix contents { get; set; }
-
-
         public int LAYER_HEIGHT { get; set; }
         public int LAYER_WIDTH { get; set; }
 
