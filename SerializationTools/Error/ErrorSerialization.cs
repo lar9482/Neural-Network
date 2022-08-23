@@ -15,7 +15,27 @@ namespace SerializationTools.Error
             {
                 return "crossEntropy";
             }
+
+            if (errorFunction is MSE)
+            {
+                return "MSE";
+            }
             return "";
+        }
+
+        public static errorFunction DeserializeError(string errorFunction)
+        {
+            switch(errorFunction)
+            {
+                case "crossEntropy":
+                    return new crossEntropy();
+
+                case "MSE":
+                    return new MSE();
+
+                default:
+                    return new MSE();
+            }
         }
     }
 }

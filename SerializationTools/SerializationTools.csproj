@@ -51,6 +51,8 @@
     <Compile Include="Layers\FeedForward\DenseLayerObject.cs" />
     <Compile Include="Layers\FeedForward\InputLayerObject.cs" />
     <Compile Include="Layers\FeedForward\OutputLayerObject.cs" />
+    <Compile Include="LearningAlgorithm\LearningAlgorithm_Serialization.cs" />
+    <Compile Include="Network\FeedForward_Network_Object.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,8 +66,6 @@
       <Name>Neural Network</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LearningAlgorithm\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,7 +12,7 @@ using Neural_Network.Layers.FeedForward.Input;
 
 namespace SerializationTools.Layers.FeedForward.Input
 {
-    internal class InputLayerObject : BaseLayer
+    public class InputLayerObject : BaseLayer
     {
         public static InputLayerObject SerializeObject(InputLayer layer)
         {
